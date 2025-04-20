@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ungkapan Perasaan</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fde2f3; /* Warna latar belakang lembut */
+  }
+
+  .button-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  #tolakBtn {
+    background-color: #ff7f50; /* Warna oranye lembut */
+    color: white;
+  }
+
+  #terimaBtn {
+    background-color: #87ceeb; /* Warna biru langit lembut */
+    color: white;
+  }
+
+  #terima-content {
+    margin-top: 30px;
+    text-align: center;
+    display: none; /* Awalnya disembunyikan */
+  }
+
+  #terima-content img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .flowers {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .flowers img {
+    max-width: 50px;
+    height: auto;
+  }
+
+  #message {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  #audioPlayer {
+    display: none; /* sembuyikan player audio */
+  }
+</style>
+</head>
+<body>
+
+  <h1>will you be my girlfriend?</h1>
+  <div class="button-container">
+    <button id="tolakBtn">noo:(</button>
+    <button id="terimaBtn">ABSOLUTELY YES</button>
+  </div>
+
+  <div id="terima-content">
+    <img src="Plushies.jpeg" alt="Boneka Lucu">
+    <div class="flowers">
+      <img src="mawar putih.jpeg" alt="Bunga 1">
+      <img src="anggrek.jpeg" alt="Bunga 2">
+      <img src="lily putih.jpeg" alt="Bunga 3">
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <audio id="audioPlayer" src="Reff lagu Tulus   teman hidup.mp3" preload="auto"></audio>
+
+  <script>
+    const tolakBtn = document.getElementById('tolakBtn');
+    const terimaBtn = document.getElementById('terimaBtn');
+    const terimaContent = document.getElementById('terima-content');
+    const messageDiv = document.getElementById('message');
+    const body = document.body;
+    let maxX = window.innerWidth - tolakBtn.offsetWidth;
+    let maxY = window.innerHeight - tolakBtn.offsetHeight;
+
+    tolakBtn.addEventListener('mouseover', () => {
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+      tolakBtn.style.position = 'absolute';
+      tolakBtn.style.left = `${newX}px`;
+      tolakBtn.style.top = `${newY}px`;
+    });
+
+    terimaBtn.addEventListener('click', () => {
+      terimaContent.style.display = 'block';
+      messageDiv.textContent = 'Happy ever after💕';
+      terimaBtn.style.display = 'none';
+      tolakBtn.style.display = 'none';
+      audioPlayer.play(); //memulai musik saat tombol "terima" diklik
+    });
+
+    // Pastikan tombol "Tolak" tetap di dalam batas layar saat resize
+    window.addEventListener('resize', () => {
+      maxX = window.innerWidth - tolakBtn.offsetWidth;
+      maxY = window.innerHeight - tolakBtn.offsetHeight;
+    });
+  </script>
+
+</body>
+</html>
